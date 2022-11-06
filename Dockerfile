@@ -27,7 +27,6 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 COPY Gemfile* ./
 
-RUN rm -rf node_modules vendor
 RUN gem install rails bundler
 RUN bundle install
 RUN yarn install

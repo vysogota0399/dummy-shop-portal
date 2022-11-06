@@ -8,12 +8,21 @@
 
     <%= javascript_pack_tag "application" %>
     <%= stylesheet_pack_tag "application" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
+    <div class="">
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
   </body>
 </html>
