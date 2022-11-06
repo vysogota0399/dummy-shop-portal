@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:14.2
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.0
+    volumes:
+      - redis:/var/lib/redis/data
+
+  app:
+    build:
+      context: .
+    volumes:
+      - .:/opt/app
+    links:
+      - postgres
+      - redis
+    env_file:
+      - .env
+
+  nginx:
+    build:
+      context: nginx
+    links:
+      - app
+    volumes:
+      - ./nginx:/etc/nginx/conf.d/
+    ports:
+      - '80:80'
+
+volumes:
+  postgres:
+  redis:
