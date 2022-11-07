@@ -1,29 +1,29 @@
-<%#= form_for items, class: "row g-3" %>
 <div class="filter rounded bg-primary p-4 text-light">
-  <form class="row g-3 bg-primary">
+  <%= form_with method: 'get', class: 'row g-3 bg-primary' do |f| %>
     <h3 class="text-warning">Фильтр</h3>
-    <div class="col-md-4">
-        <label for="inputCity" class="form-label">Тип</label>
-        <select id="inputState" class="form-select">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="inputState" class="form-label">Наименование</label>
-        <input type="text" class="form-control" id="inputCity">
-      </div>
-      <div class="col-md-4">
-        <label for="inputZip" class="form-label">Сортировать по</label>
-        <select id="inputState" class="form-select">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-light">Поиск</button>
-      </div>
-  </form>
-</div>
 
-<%# end %>
+    <div class="col-md-4">
+      <%= label_tag 'kind', 'Тип', class: 'form-label' %>
+      <%= select_tag(:kind, options_for_select(@item_kinds, 'all'), class: 'form-select') %>
+    </div>
+
+    <div class="col-md-4">
+      <%= label_tag 'term', 'Наименование', class: 'form-label' %>
+      <%= text_field_tag 'term', nil, placeholder: 'Рыба ...', class: 'form-control' %>
+    </div>
+
+    <div class="col-md-2">
+      <%= label_tag 'sort_by', 'Сортировать по', class: 'form-label' %>
+      <%= select_tag(:sort_by, options_for_select(@sort_by), class: 'form-select') %>
+    </div>
+
+    <div class="col-md-2">
+      <%= label_tag 'sort_direction', 'Направление сортировки ', class: 'form-label' %>
+      <%= select_tag(:sort_direction, options_for_select(@sort_direction), class: 'form-select') %>
+    </div>
+
+    <div class="col-12">
+      <%= f.submit 'Поиск', class: 'btn btn-light' %>
+    </div>
+  <% end %>
+</div>

@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
 
   before_action :find_items
 
-  def index; end
+  def index
+    @item_kinds     = ItemsFilter::SELECT_OPTIONS
+    @sort_direction = ItemsFilter::SORT_DIRECTION
+    @sort_by        = ItemsFilter::SORT_BY
+  end
 
   private
   

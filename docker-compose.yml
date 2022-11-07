@@ -27,6 +27,8 @@ services:
       - redis
     env_file:
       - .env
+    tty: true
+    stdin_open: true
 
   nginx:
     build:
