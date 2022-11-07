@@ -12,16 +12,13 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <div class="">
-    </div>
-    <div class="row align-items-center">
-      <div class="col">
-        <div class="content">
+    <div class="container-sm">
+      <div class="row align-items-center">
+        <div class="col">
           <%= yield %>
         </div>
       </div>
     </div>
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </body>

@@ -1,5 +1,4 @@
 require 'faker'
-require 'byebug'
 
 User.destroy_all
 

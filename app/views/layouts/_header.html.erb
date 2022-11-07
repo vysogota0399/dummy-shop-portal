@@ -1,21 +1,27 @@
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Separated link</a></li>
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>
-</ul>
+<div class="container-sm mt-3 mb-3">
+  <div class="row align-items-end">
+    <div class="col">
+      <ul class="nav justify-content-end align-items-baseline">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Заказы</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Корзина</a>
+          </li>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <%= current_user.first_name %>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Вход", new_session_path(:user), class: "nav-link active"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Регистрация", new_registration_path(:user), class: "nav-link active" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

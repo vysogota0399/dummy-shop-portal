@@ -20,6 +20,8 @@ services:
       context: .
     volumes:
       - .:/opt/app
+    ports:
+      - 3001:3000
     links:
       - postgres
       - redis
@@ -33,6 +35,7 @@ services:
       - app
     volumes:
       - ./nginx:/etc/nginx/conf.d/
+      - ./nginx/statica:/public/staticat
     ports:
       - '80:80'
 

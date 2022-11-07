@@ -1,0 +1,29 @@
+<%#= form_for items, class: "row g-3" %>
+<div class="filter rounded bg-primary p-4 text-light">
+  <form class="row g-3 bg-primary">
+    <h3 class="text-warning">Фильтр</h3>
+    <div class="col-md-4">
+        <label for="inputCity" class="form-label">Тип</label>
+        <select id="inputState" class="form-select">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">Наименование</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="col-md-4">
+        <label for="inputZip" class="form-label">Сортировать по</label>
+        <select id="inputState" class="form-select">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-light">Поиск</button>
+      </div>
+  </form>
+</div>
+
+<%# end %>

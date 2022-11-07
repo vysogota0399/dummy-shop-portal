@@ -29,6 +29,7 @@ COPY Gemfile* ./
 
 RUN gem install rails bundler
 RUN bundle install
+
 RUN yarn install
 
 COPY . .
