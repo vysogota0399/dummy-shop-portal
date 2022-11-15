@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class ItemsController < AuthorizedController
   include Pagy::Backend
 
   before_action :find_items

@@ -18,5 +18,4 @@
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import "stylesheets/application"
-
-console.log('Hello World from Webpacker')
+import 'controllers'

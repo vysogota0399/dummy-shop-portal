@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_180707) do
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "item_id"
+    t.integer "cost_cops"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"
@@ -40,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_180707) do
     t.integer "cost_cops"
     t.string "comment"
     t.integer "evaluation"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_180707) do
   create_table "shopping_cart_items", force: :cascade do |t|
     t.bigint "shopping_cart_id"
     t.bigint "item_id"
+    t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_shopping_cart_items_on_item_id"

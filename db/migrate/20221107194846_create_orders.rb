@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.integer :cost_cops
       t.string  :comment
       t.integer :evaluation
-      t.status  :integer
+      t.integer :status
       t.timestamps
     end
   end

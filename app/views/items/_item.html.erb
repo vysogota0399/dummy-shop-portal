@@ -12,6 +12,13 @@
       </div>
     </div>
 
-    <button class="btn btn-primary" style="width:100%">Добавить в корзину</button>
+    <button
+      class="btn btn-primary"
+      style="width:100%"
+      data-action="shopping-carts#add_item_to_shopping_card"
+      data-shopping-carts-id-param="<%= item.id %>"
+    >
+      Добавить в корзину
+    </button>
   </div>
 </div>

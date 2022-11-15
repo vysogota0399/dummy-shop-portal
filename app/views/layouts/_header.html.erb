@@ -8,8 +8,8 @@
           </li>
           <li class="nav-item">
             <div class="shopping_cart d-flex  align-items-baseline">
-              <a class="nav-link active" aria-current="page" href="#">Корзина</a>
-              <span class="shopping_cart__cost">0</span>
+              <%= link_to 'Корзина', shopping_cart_path, { 'aria-current' => 'page', 'class' => 'nav-link active ' } %>
+              <span class="shopping_cart__cost"><%= @shopping_cart.current_cost %></span>
               <span>рублей</span>
             </div>
           </li>
