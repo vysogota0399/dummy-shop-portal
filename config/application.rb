@@ -24,5 +24,7 @@ module Vds
       logger.formatter = config.log_formatter
       config.logger    = ActiveSupport::TaggedLogging.new(logger)
     end
+
+    config.eager_load_paths += Dir[ Rails.root.join('lib', 'types', '**/') ]
   end
 end

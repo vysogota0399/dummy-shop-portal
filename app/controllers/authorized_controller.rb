@@ -4,5 +4,7 @@ class AuthorizedController < ApplicationController
 
   def find_shopping_cart
     @shopping_cart = ShoppingCart.find_or_create_by(user: current_user)
+    @shopping_cart_decorator = ShoppingCartDecorator.new(@shopping_cart)
+    @shopping_cart_current_cost = @shopping_cart_decorator.current_cost
   end
 end

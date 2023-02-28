@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <div class="app" data-controller="shopping-carts" data-shopping-carts-cost-value="<%= @shopping_cart&.current_cost || 0 %>">
+    <div class="app" data-controller="shopping-carts" data-shopping-carts-cost-value="<%= @shopping_cart_current_cost || 0 %>">
       <%= render 'layouts/header' %>
       <div class="container-sm">
         <div class="row align-items-center">
