@@ -12,16 +12,22 @@
 
   <body>
     <div class="app" data-controller="shopping-carts" data-shopping-carts-cost-value="<%= @shopping_cart_current_cost || 0 %>">
-      <%= render 'layouts/header' %>
+      <div class="header">
+        <%= render 'layouts/header' %>
+      </div>
       <div class="container-sm">
+        <% flash.each do |key, message| %>
+          <div class="alert alert-<%= key %>" role="alert">
+            <%= message%>
+          </div>
+        <% end %>
+
         <div class="row align-items-center">
           <div class="col">
             <%= yield %>
           </div>
         </div>
       </div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
     </div>
   </body>
 </html>

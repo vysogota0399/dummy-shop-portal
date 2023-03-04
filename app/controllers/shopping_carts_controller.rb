@@ -9,5 +9,7 @@ class ShoppingCartsController < AuthorizedController
     end
   end
 
-  def show; end
+  def show
+    @items = @shopping_cart_decorator.current_items
+  end
 end

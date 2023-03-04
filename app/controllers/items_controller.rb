@@ -1,10 +1,9 @@
-require File.join(Rails.root, 'lib/orchestrator/adapter')
 
 class ItemsController < AuthorizedController
   include Pagy::Backend
 
   def index
-    items_data = Orchestrator::Adapter.get_items(params.merge(with_meta: true))
+    items_data = orchestrator_adapter.get_items(params.merge(with_meta: true))
     pagination_data = items_data[:pagination]
     @items          = items_data[:items]
     @pagy           = Pagy.new(count: pagination_data[:count], page: pagination_data[:page])

@@ -11,6 +11,11 @@ class ShoppingCartDecorator
     shopping_cart.update(items: current_item_ids << id)
   end
 
+  # Чистит корзину
+  def clean
+    shopping_cart.update(items: [])
+  end
+
   # текущая сумма заказа (руб) в корзине
   def current_cost
     items = adapter.get_items(id: current_item_ids)[:items]

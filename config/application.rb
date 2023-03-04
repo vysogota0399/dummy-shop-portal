@@ -26,5 +26,6 @@ module Vds
     end
 
     config.eager_load_paths += Dir[ Rails.root.join('lib', 'types', '**/') ]
+    config.eager_load_paths += Dir[ Rails.root.join('lib', 'resources') ]
   end
 end
