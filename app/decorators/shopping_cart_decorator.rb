@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 class ShoppingCartDecorator
-  attr_reader :shopping_cart
+  attr_reader :shopping_cart, :orchestrator_adapter
 
-  def initialize(shopping_cart)
+  def initialize(shopping_cart, orchestrator_adapter)
     @shopping_cart = shopping_cart
+    @orchestrator_adapter = orchestrator_adapter
   end
 
   def add_item(id)
-    shopping_cart.update(items: current_item_ids << id)
+    shopping_cart.items << id
+    shopping_cart.save
+    shopping_cart
   end
 
   # Чистит корзину
@@ -16,34 +19,26 @@ class ShoppingCartDecorator
     shopping_cart.update(items: [])
   end
 
-  # текущая сумма заказа (руб) в корзине
-  def current_cost
-    items = adapter.get_items(id: current_item_ids)[:items]
-    current_items.sum { |item| item.cost_rub }
+  def cost
+    current_items.sum { |item, count| item.cost_rub * count }.round
   end
 
+  # Товары в корзигне пользователя
   def current_items
-    ids = current_item_ids
-    return [] unless ids.any?
+    @current_items ||= begin
+      prepared_item_ids = shopping_cart.items
+      return [] unless prepared_item_ids.any?
 
-    items = adapter.get_items(id: ids)[:items]
-    items_hash = {}
-    items.each do |item|
-      items_hash[item.id] = item
+      result = {}
+      search_params = {
+        id: prepared_item_ids,
+        orchestrator_adapter: orchestrator_adapter,
+      }
+      found_items = ItemFinder.call(search_params).items
+      found_items.each do |found_item|
+        result[found_item] = prepared_item_ids.count { |prepared_id| prepared_id == found_item.id }
+      end
+      result
     end
-
-    ids.map do |id|
-      items_hash[id]
-    end
-  end
-
-  private
-
-  def adapter
-    Orchestrator::Adapter
-  end
-
-  def current_item_ids
-    shopping_cart.items || []
   end
 end

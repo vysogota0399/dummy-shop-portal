@@ -25,7 +25,7 @@ module Vds
       config.logger    = ActiveSupport::TaggedLogging.new(logger)
     end
 
-    config.eager_load_paths += Dir[ Rails.root.join('lib', 'types', '**/') ]
-    config.eager_load_paths += Dir[ Rails.root.join('lib', 'resources') ]
+    config.autoload_lib(ignore: %w(assets tasks))
+    config.logger = Logger.new(STDOUT)
   end
 end

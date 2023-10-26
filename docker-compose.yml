@@ -1,47 +1,50 @@
 version: "3.9"
 
+x-default_service: &default_service
+  build:
+    context: .
+  volumes:
+    - .:/usr/src/app
+  env_file:
+    - .env
+  tty: true
+  stdin_open: true
+
 services:
-
-  postgres:
-    image: postgres:14.2
-    container_name: shop-app-postgres
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: secret
-    volumes:
-      - postgres:/var/lib/postgresql/data
-
-  app:
-    build:
-      context: .
-    container_name: shop-app
-    volumes:
-      - .:/opt/app
+  portal-app:
+    <<: *default_service
+    container_name: shop-http-portal
     ports:
-      - 3001:3000
-    links:
-      - postgres
-    env_file:
-      - .env
-    tty: true
-    stdin_open: true
+      - 80:3000
 
-  nginx:
-    build:
-      context: nginx
-    container_name: shop-nginx
-    links:
-      - app
-    volumes:
-      - ./nginx:/etc/nginx/conf.d/
-      - ./nginx/statica:/public/staticat
-    ports:
-      - '80:80'
+  # postgres:
+  #   image: postgres:14.2
+  #   container_name: shop-postgres
+  #   environment:
+  #     POSTGRES_USER: orchestrator
+  #     POSTGRES_PASSWORD: secret
+  #   volumes:
+  #     - postgres:/var/lib/postgresql/data
+  
+  # message_broker:
+  #   image: rabbitmq:3.12.2-management
+  #   platform: linux/arm64
+  #   container_name: shop-message_broker
+  #   healthcheck:
+  #     test: rabbitmq-diagnostics -q ping
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 12
+  #   ports: 
+  #     - 5672:5672
+  #     - 15672:15672
+  #   volumes:
+  #     - 'message_broker:/data'
 
-volumes:
-  postgres:
+# volumes:
+#   postgres:
+#   message_broker:
 
 networks:
   default:
       name: shop-local-network
-      external: true

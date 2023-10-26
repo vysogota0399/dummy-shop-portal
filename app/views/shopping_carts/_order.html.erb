@@ -32,11 +32,10 @@
         <%= f.label :no_hand, 'Оставить у двери', class: 'form-check-label' %><br />
       </div>
 
-      <% @shopping_cart.items.each do |item| %>
+      <% @shopping_cart.current_items.each do |item| %>
         <%= f.hidden_field 'items[]', value: item %>
       <% end %>
-      <%= f.hidden_field 'items[]', value: @shopping_cart.items %>
-      Итого: <span> <b><%= @shopping_cart_current_cost %></b></span> Р
+      Итого: <span> <b><%= @shopping_cart.cost %></b></span> Р
       <%= f.button 'Оформить заказ', type: 'submit', class: 'btn btn-primary"' %>
     <% end %>
   </div>

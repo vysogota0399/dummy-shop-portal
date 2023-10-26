@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "3.1.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4"
+gem "rails", "~> 7.1.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -48,6 +48,8 @@ gem 'bootsnap', require: false
 gem 'pagy', '~> 5.10'
 gem 'faraday', '~> 2.7', '>= 2.7.4'
 gem 'dry-struct', '~> 1.6'
+gem 'dry-configurable', '~> 1.1'
+gem 'httpclient', '~> 2.7', '>= 2.7.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

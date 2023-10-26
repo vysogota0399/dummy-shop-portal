@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row align-items-start">
       <div class="col-8">
-        <% ItemsDecorator.group(@items) do |item, count| %>
+        <% @items.each do |item, count| %>
           <%= render 'item', item: item, count: count %>
         <% end %>
       </div>

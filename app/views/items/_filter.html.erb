@@ -13,13 +13,13 @@
     </div>
 
     <div class="col-md-2">
-      <%= label_tag 'sort_by', 'Сортировать по', class: 'form-label' %>
-      <%= select_tag(:sort_by, options_for_select(@sort_by), class: 'form-select') %>
+      <%= label_tag 'order_by', 'Сортировать по', class: 'form-label' %>
+      <%= select_tag(:order_by, options_for_select(@order_by), class: 'form-select') %>
     </div>
 
     <div class="col-md-2">
-      <%= label_tag 'sort_direction', 'Направление сортировки ', class: 'form-label' %>
-      <%= select_tag(:sort_direction, options_for_select(@sort_direction), class: 'form-select') %>
+      <%= label_tag 'order_direction', 'Направление сортировки ', class: 'form-label' %>
+      <%= select_tag(:order_direction, options_for_select(@order_direction), class: 'form-select') %>
     </div>
 
     <div class="col-12">

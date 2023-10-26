@@ -1,6 +1,5 @@
 # Dockerfile development version
-FROM ruby:3.1.2 AS app-development
-
+FROM ruby:3.1.3 AS app-development
 
 # Install yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
@@ -20,7 +19,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Default directory
-ENV INSTALL_PATH /opt/app
+ENV INSTALL_PATH /usr/src/app
 RUN mkdir -p $INSTALL_PATH
 
 # Install gems

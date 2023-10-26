@@ -44,12 +44,12 @@ default: &default
 
 development:
   <<: *default
-  database: <%= Rails.application.credentials.database.name %>
+  database: portal-development
 
 test:
   <<: *default
-  database: test
+  database: portal-test
 
 production:
   <<: *default
-  database: <%= Rails.application.credentials.database.name %>
+  database: portal-production

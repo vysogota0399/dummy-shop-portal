@@ -3,12 +3,22 @@ class ItemsController < AuthorizedController
   include Pagy::Backend
 
   def index
-    items_data = orchestrator_adapter.get_items(params.merge(with_meta: true))
-    pagination_data = items_data[:pagination]
-    @items          = items_data[:items]
-    @pagy           = Pagy.new(count: pagination_data[:count], page: pagination_data[:page])
-    @item_kinds     = items_data.dig(:meta, :select_options)
-    @sort_direction = items_data.dig(:meta, :sort_direction)
-    @sort_by        = items_data.dig(:meta, :sort_by)
+    items_with_meta = ItemFinder.call(filter_strong_params.to_h.merge(orchestrator_adapter: Thread.current[:orchestrator_adapter]))
+    @items = items_with_meta.items
+    meta = items_with_meta.meta
+    initialize_form(meta)
+  end
+
+  private
+
+  def initialize_form(meta)
+    @item_kinds = meta.item_kinds
+    @order_by = meta.item_order_by
+    @order_direction = meta.item_order_direction
+    @pagy = Pagy.new(count: meta.count, page: meta.page)
+  end
+
+  def filter_strong_params
+    params.permit(:kind, :order_direction, :order_by)
   end
 end
