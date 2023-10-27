@@ -1,0 +1,12 @@
+<div class="profile">
+  <% if user_signed_in? %>
+    <span class="profile_emoji">🐵</span> <%= current_user.first_name %>
+  <% else %>
+    <li class="nav-item">
+      <%= link_to "Вход", new_session_path(:user), class: "nav-link active"%>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Регистрация", new_registration_path(:user), class: "nav-link active" %>
+    </li>
+  <% end %>
+</div>

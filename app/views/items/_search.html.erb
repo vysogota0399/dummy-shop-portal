@@ -1,0 +1,6 @@
+<div class="row">
+  <%= form_with method: 'get', class: 'input-group input-group-lg' do |f| %>
+    <%= text_field_tag 'term', nil, placeholder: '🔍  Искать свежие продукты', class: 'form-control global-search-input ' %>
+    <button class="btn global-search-btn" type="button" id="button-addon2">Искать</button>
+  <% end %>
+</div>

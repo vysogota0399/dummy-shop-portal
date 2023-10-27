@@ -1,0 +1,30 @@
+<div class="row">
+  <%= form_with model: @address do |f| %>
+    <h5>Доставка</h5>
+    <div class="row mb-3">
+      <div class="col">
+        <%= f.label :address, 'Адрес доставки', class: 'form-label' %><br />
+        <%= f.text_field :address, autofocus: false, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <%= f.label :front_door, 'Подъезд', class: 'form-label' %><br />
+        <%= f.text_field :front_door, autofocus: false, class: 'form-control' %>
+      </div>
+      <div class="col">
+        <%= f.label :floor, 'Этаж', class: 'form-label' %><br />
+        <%= f.text_field :floor, autofocus: false, class: 'form-control' %>
+      </div>
+      <div class="col">
+        <%= f.label :intercom, 'Домофон', class: 'form-label' %><br />
+        <%= f.text_field :intercom, autofocus: false, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <%= f.submit 'Сохранить', class: 'btn btn-primary form-control default_border_radius' %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,24 +1,16 @@
-<div class="card m-2 shadow bg-white rounded" style="width: 260px;">
-  <img src="" class="card-img-top" alt="..." height="200px">
-  <div class="card-body">
-    <h5 class="card-title"><%= item.title %></h5>
-    <p class="card-text"><%= item.description %></p>
-    <p class="card-text">Цена: <%= item.cost_rub %>(р)</p>
-    <p class="card-text">Вес: <%= item.weight %>(г)</p>
-    <div class="mb-3 row">
-      <label for="staticEmail" class="col-sm-5 col-form-label">Количество</label>
-      <div class="col-sm-7">
-        <input type="text" class="form-control" id="staticEmail" value="1">
-      </div>
-    </div>
-
-    <button
-      class="btn btn-primary"
-      style="width:100%"
-      data-action="shopping-carts#add_item_to_shopping_card"
-      data-shopping-carts-id-param="<%= item.id %>"
-    >
-      Добавить в корзину
+<div class="d-flex flex-column item">
+  <div class="item__image_container default_border_radius d-flex align-items-center justify-content-center">
+    <%= image_pack_tag "items/#{rand(3)}.jpeg", class: "item__image"%>
+  </div>
+  <div class="item__content mt-1">
+    <%= item.title.capitalize %>
+  </div>
+  <div class="item__meta">
+    <%= item.weight %> Г
+  </div>
+  <div class="item__add_btn_container">
+    <button class="btn item__add_btn default_border_radius">
+      <%= item.cost_rub %> ₽ +
     </button>
   </div>
 </div>

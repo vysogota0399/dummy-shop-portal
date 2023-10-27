@@ -6,4 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :shopping_cart
+
+  has_many :addresses
 end

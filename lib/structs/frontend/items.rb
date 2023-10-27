@@ -8,9 +8,6 @@ module Structs
         attribute :count, Types::Integer
         attribute :page, Types::Integer
         attribute :items, Types::Integer
-        attribute :item_kinds, Types::Array
-        attribute :item_order_by, Types::Array
-        attribute :item_order_direction, Types::Array
       end
     end
   end

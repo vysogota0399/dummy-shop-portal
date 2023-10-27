@@ -1,7 +1,6 @@
 class ShoppingCartsController < AuthorizedController
   def update
     respond_to do |format|
-      format.html {}
       format.json do
         @shopping_cart.add_item(params[:id])
         render json: { new_cost: @shopping_cart.cost }

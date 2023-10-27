@@ -20,6 +20,10 @@ module Adapters
       end
     end
 
+    def item_categories
+      client.send_request('GET', "/api/v1/items/categories")['data']
+    end
+
     private
 
     def client

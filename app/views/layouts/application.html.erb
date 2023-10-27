@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vds</title>
+    <title>Доставочка</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= javascript_pack_tag "application" %>
     <%= stylesheet_pack_tag "application" %>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Tangerine">
   </head>
 
   <body>
-    <div class="app" data-controller="shopping-carts" data-shopping-carts-cost-value="<%= @shopping_cart.cost || 0 %>">
-      <div class="header">
-        <%= render 'layouts/header' %>
-      </div>
-      <div class="container-sm">
+    <div class="app">
+      <div class="container-xxl">
+        <div class="row align-items-start pt-5">
+          <div class="col-2">
+            <div class="content p-4 shadow bg-white default_border_radius">
+              <%= render 'categories/index' %>
+            </div>
+          </div>
+          <div class="col">
+            <div class="content p-4 shadow bg-white default_border_radius">
+              <%= render 'items/search' %>
+              <%= yield %>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="align-items-start">
+              <div class="content p-4 mb-3 shadow bg-white default_border_radius">
+                <%= render 'layouts/profile' %>
+              </div>
+            </div>
+            <div class="align-items-start">
+              <%= render 'orders/create' %>
+            </div>
+          </div>
+        </div>
         <% flash.each do |key, message| %>
           <div class="alert alert-<%= key %>" role="alert">
             <%= message%>
           </div>
         <% end %>
-
-        <div class="row align-items-center">
-          <div class="col">
-            <%= yield %>
-          </div>
-        </div>
       </div>
     </div>
   </body>

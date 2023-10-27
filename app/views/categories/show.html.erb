@@ -1,0 +1,48 @@
+<div class="mt-4 d-flex justify-content-left">
+  <div>
+    <%= link_to root_path do %>
+      <button class="btn categories_show__back_btn default_border_radius">
+        ←
+      </button>
+    <% end %>
+  </div>
+  <div>
+    <h1 class="title-color">
+      <%= @category.capitalize %>
+    </h1>
+  </div>
+</div>
+<div class="mt-4">
+  <h2 class=title-color">
+    Классные цены
+  </h2>
+</div>
+<div class="d-flex justify-content-start mt-4">
+  <% @items.first(3).each do |item| %>
+    <%= render 'items/item', item: item %>
+  <% end %>
+</div>
+<div class="mt-4">
+  <h2 class=title-color">
+    Новинки 
+  </h2>
+</div>
+<div class="d-flex justify-content-between mt-4 flex-wrap">
+  <% @items.first(4).each do |item| %>
+    <%= render 'items/item', item: item %>
+  <% end %>
+</div>
+
+<div class="row mt-4">
+  <h2 class=title-color">
+    Подходит для вас 
+  </h2>
+</div>
+
+<div class="d-flex justify-content-between mt-4 flex-wrap">
+  <% @items.each do |item| %>
+    <%= render 'items/item', item: item %>
+  <% end %>
+</div>
+
+<%#= pagy_bootstrap_nav(@pagy) %>

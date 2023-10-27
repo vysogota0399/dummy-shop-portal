@@ -1,0 +1,8 @@
+<div class="content p-4 mb-3 shadow bg-white default_border_radius">
+  <% if @address && @address.persisted? %>
+    <%= render 'addresses/show' %>
+    <%= render 'shopping_carts/order' %>
+  <% else %>
+    <%= render 'addresses/new' %>
+  <% end %>
+</div>

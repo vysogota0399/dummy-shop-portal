@@ -8,6 +8,10 @@ class ShoppingCartDecorator
     @orchestrator_adapter = orchestrator_adapter
   end
 
+  def empty?
+    current_items.empty?
+  end
+
   def add_item(id)
     shopping_cart.items << id
     shopping_cart.save
