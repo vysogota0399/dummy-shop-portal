@@ -66,6 +66,7 @@ body {
 
 .shopping_card_container {
   height: 310px;
+  overflow-y: auto;
 }
 
 li {
@@ -98,4 +99,14 @@ a {
 
 .w_100 {
   width: 100%;
+}
+
+.shopping_carts__order_cost {
+  font-weight: 900px;
+  font-size: 30px;
+}
+
+.shopping_carts__order_cost span{
+  font-weight: 900px;
+  font-size: 30px;
 }

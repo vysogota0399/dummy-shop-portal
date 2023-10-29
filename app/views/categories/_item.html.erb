@@ -9,8 +9,11 @@
     <%= item.weight %> Г
   </div>
   <div class="item__add_btn_container">
-    <button class="btn item__add_btn default_border_radius">
-      <%= item.cost_rub %> ₽ +
-    </button>
+    <%= form_with url: shopping_cart_path, method: 'put', class: 'item__add_btn_container', remote: true do |f| %>
+      <%= f.hidden_field :item_id, value: item.id %>
+      <%= f.submit "#{item.cost_rub } ₽ +", class: 'btn item__add_btn default_border_radius w_100' do %>
+        <%= item.cost_rub %> ₽ +
+      <% end %>
+    <% end %>
   </div>
 </div>

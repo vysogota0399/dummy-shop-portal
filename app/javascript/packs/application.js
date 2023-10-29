@@ -18,4 +18,5 @@ const images = require.context('../images', true)
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import "stylesheets/application/"
+import "@hotwired/turbo-rails"
 import 'controllers'

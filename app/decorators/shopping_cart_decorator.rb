@@ -18,6 +18,13 @@ class ShoppingCartDecorator
     shopping_cart
   end
 
+  # удаляет все вхождения
+  def remove_items_by(id)
+    shopping_cart.items.delete(id.to_i)
+    shopping_cart.save
+    shopping_cart
+  end
+
   # Чистит корзину
   def clean
     shopping_cart.update(items: [])
@@ -29,20 +36,17 @@ class ShoppingCartDecorator
 
   # Товары в корзигне пользователя
   def current_items
-    @current_items ||= begin
-      prepared_item_ids = shopping_cart.items
-      return [] unless prepared_item_ids.any?
-
-      result = {}
-      search_params = {
-        id: prepared_item_ids,
-        orchestrator_adapter: orchestrator_adapter,
-      }
-      found_items = ItemFinder.call(search_params).items
-      found_items.each do |found_item|
-        result[found_item] = prepared_item_ids.count { |prepared_id| prepared_id == found_item.id }
-      end
-      result
+    prepared_item_ids = shopping_cart.items
+    return [] unless prepared_item_ids.any?
+    result = {}
+    search_params = {
+      id: prepared_item_ids,
+      orchestrator_adapter: orchestrator_adapter,
+    }
+    found_items = ItemFinder.call(search_params).items
+    found_items.each do |found_item|
+      result[found_item] = prepared_item_ids.count { |prepared_id| prepared_id == found_item.id }
     end
+    result
   end
 end

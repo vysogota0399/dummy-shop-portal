@@ -1,0 +1,7 @@
+<div class="text-center shopping_card_container" id="shopping_card_container">
+  <% if @shopping_cart.empty? %>
+    <%= render 'shopping_carts/empty' %>
+  <% else %>
+    <%= render 'shopping_carts/items', items: @shopping_cart.current_items %>
+  <% end %>
+</div>

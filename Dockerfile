@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     vim \
     nodejs \
     yarn \
+    npm \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Default directory

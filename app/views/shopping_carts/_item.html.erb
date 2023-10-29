@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-start item w-100 shopping_carts__item">
+  <div class="item__image_container_small default_border_radius d-flex align-items-center justify-content-center flex-grow-1">
+    <%= image_pack_tag "items/#{rand(3)}.jpeg", class: "item__image"%>
+  </div>
+  <div class='d-flex flex-column align-items-start flex-grow-1'>
+    <div class="item__content d-flex flex-row justify-content-between w-100">
+      <div class="item__content_text text-start">
+        <%= item.title.capitalize %>
+      </div>
+      <div class="remove_item">
+        <turbo-frame id='<%= "#{@shopping_cart.shopping_cart.id}_#{item.id}"%>'>
+          <%= form_with url: shopping_cart_path, method: 'put', remote: true do |f| %>
+            <%= f.hidden_field :item_id, value: item.id %>
+            <%= f.hidden_field :item_action, value: 'remove_items' %>
+            <%= f.submit "x", id: 'remove_items_from_shopping_cart' %>
+          <% end %>
+        <turbo-frame>
+      </div>
+    </div>
+    <div class="item__meta text-start">
+      <%= item.weight %> Г
+    </div>
+    <div class="item_total d-flex flex-row justify-content-between w-100">
+      <div class="item_total__item__counter btn-group btn-group-sm text-start" role="group">
+        <button class="item__add_btn_left"> + </button>
+        <span class="item_total__item__counter_value"> <%= item_counter %> </span>
+        <button class="item__add_btn_right"> - </button>
+      </div>
+      <div class="item_total__price">
+        <%= item.cost_rub %> ₽
+      </div>
+    </div>
+  </div>
+</hr>
+</div>

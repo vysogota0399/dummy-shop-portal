@@ -1,22 +1,16 @@
 <div>
   <div class="coll">
     <%= form_with url: orders_path, method: :post do |f| %>
-      <div class="text-center shopping_card_container">
-        <% if @shopping_cart.empty? %>
-          <%= render 'shopping_carts/empty' %>
-        <% else %>
-        
-        <% end %>
-      </div>
+      <%= render 'shopping_carts/container' %>
       <div>
         <span class="subtitle-color">
-          Итого
+        Итого
         </span>
       </div>
-      <div>
-        <h2>
-          <%= @shopping_cart.cost %> ₽
-        </h2>
+      <div class="shopping_carts__order_cost">
+        <span id="shopping_carts__order_cost_value">
+          <%= @shopping_cart.cost %>
+        </span> ₽
       </div>
 
       <div class="mb-3 form-check">

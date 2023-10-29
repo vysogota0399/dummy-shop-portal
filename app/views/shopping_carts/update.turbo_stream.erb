@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "shopping_card_container" do %>
+  <%= render 'shopping_carts/container' %>
+<% end %>
+
+<%= turbo_stream.replace "shopping_carts__order_cost_value" do %>
+  <span id="shopping_carts__order_cost_value">
+    <%= @shopping_cart.cost %>
+  </span>
+<% end %>

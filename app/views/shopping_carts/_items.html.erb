@@ -1,0 +1,5 @@
+<div class="d-flex align-items-start flex-column">
+  <% items.each do |item, item_counter| %>
+    <%= render 'shopping_carts/item', item: item, item_counter: item_counter %>
+  <% end %>
+</div>
