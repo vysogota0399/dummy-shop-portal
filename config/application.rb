@@ -26,6 +26,7 @@ module Vds
     end
 
     config.autoload_lib(ignore: %w(assets tasks))
+    config.i18n.default_locale = :ru
     config.logger = Logger.new(STDOUT)
   end
 end

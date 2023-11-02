@@ -22,6 +22,12 @@
             </div>
           </div>
           <div class="col">
+            <% if flash.any? %>
+              <div class="content flash-holder mb-3 shadow bg-white default_border_radius">
+                <span class="notice"><%= t("#{flash[:notice]}") if flash.key?(:notice) %></span>
+                <span class="error"><%= t("#{flash[:error]}") if flash.key?(:error)%></span>
+              </div>
+            <% end %>
             <div class="content p-4 shadow bg-white default_border_radius">
               <%= render 'items/search' %>
               <%= yield %>
@@ -29,12 +35,12 @@
           </div>
           <div class="col-3">
             <div class="align-items-start">
-              <div class="content p-4 mb-3 shadow bg-white default_border_radius">
+              <div class="content p-3 mb-3 shadow bg-white default_border_radius">
                 <%= render 'layouts/profile' %>
               </div>
             </div>
             <div class="align-items-start">
-              <%= render 'orders/create' %>
+              <%= render 'shopping_carts/create' %>
             </div>
           </div>
         </div>

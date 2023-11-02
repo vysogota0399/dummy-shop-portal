@@ -1,0 +1,8 @@
+<h2 class='title-color'>Активные заказы</h2>
+<div class="current_orders_container">
+  <div class="current_orders_container__orders d-flex">
+    <turbo-frame id="current_orders" src=<%= orders_path(filter: :active) %>>
+      <div class="orders-filler default_border_radius"></div>
+    </turbo-frame>
+  </div>
+</div>

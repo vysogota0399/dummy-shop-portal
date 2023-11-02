@@ -1,0 +1,8 @@
+<h2 class='title-color mt-5'>История заказов</h2>
+<div class="finished_orders_container">
+  <div class="finished_orders_container__orders d-flex">
+    <turbo-frame id="finished_orders" src=<%= orders_path(filter: :finished) %>>
+      <div class="orders-filler default_border_radius"></div>
+    </turbo-frame>
+  </div>
+</div>

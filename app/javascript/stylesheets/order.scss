@@ -1,0 +1,39 @@
+.current_orders_container {
+  width: 100%;
+  max-height: 400px;
+  text-overflow: ellipsis;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.finished_orders_container {
+  @extend .current_orders_container;
+}
+
+.order {
+  padding: 10px 0px;
+  border-bottom: 1px solid #919191a6;
+}
+
+.order__items {
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.order__content {
+  height: 150px;
+}
+
+.order__content__info {
+  font-weight: 500;
+}
+
+.order__items__item__image{
+  width: 74px;
+  height: 74px;
+  background-color: #f2f2f2;
+}

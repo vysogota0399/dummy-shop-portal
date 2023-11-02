@@ -50,6 +50,7 @@ gem 'faraday', '~> 2.7', '>= 2.7.4'
 gem 'dry-struct', '~> 1.6'
 gem 'dry-configurable', '~> 1.1'
 gem 'httpclient', '~> 2.7', '>= 2.7.1'
+gem 'interactor', '~> 3.1', '>= 3.1.2'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

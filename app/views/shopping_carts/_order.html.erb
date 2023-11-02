@@ -1,18 +1,18 @@
 <div>
   <div class="coll">
-    <%= form_with url: orders_path, method: :post do |f| %>
-      <%= render 'shopping_carts/container' %>
-      <div>
-        <span class="subtitle-color">
-        Итого
-        </span>
-      </div>
-      <div class="shopping_carts__order_cost">
-        <span id="shopping_carts__order_cost_value">
-          <%= @shopping_cart.cost %>
-        </span> ₽
-      </div>
+    <%= render 'shopping_carts/container' %>
+    <div>
+      <span class="subtitle-color">
+      Итого
+      </span>
+    </div>
+    <div class="shopping_carts__order_cost">
+      <span id="shopping_carts__order_cost_value">
+        <%= @shopping_cart.cost %>
+      </span> ₽
+    </div>
 
+    <%= form_with url: orders_path, method: :post, 'data-turbo' => false do |f| %>
       <div class="mb-3 form-check">
         <%= f.check_box :no_hand, autofocus: false, class: 'form-check-input' %>
         <%= f.label :no_hand, 'Оставить у двери', class: 'form-check-label' %>

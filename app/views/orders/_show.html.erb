@@ -1,0 +1,21 @@
+<div class="order d-flex align-items-start">
+  <div class="order__items default_border_radius d-flex flex-wrap justify-content-between">
+    <% 4.times do |i| %>
+      <% if order.items[i].present? %>
+        <%= image_pack_tag "items/#{rand(3)}.jpeg", class: "order__items__item__image" %>
+      <% else %>
+        <div class="order__items__item__image"></div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="order__content d-flex align-items-start flex-column justify-content-between">
+    <div class="order__content__state title-color">
+      <h4>
+        <%= t("order.states.#{order.state}")%>
+      </h4>
+    </div>
+    <div class="order__content__info subtitle-color">
+      <%= order.cost_rub %> ₽ ・<%= order_content_info_for(order )%>
+    </div>
+  </div>
+</div>

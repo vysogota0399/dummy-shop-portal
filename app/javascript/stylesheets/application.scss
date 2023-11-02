@@ -1,4 +1,5 @@
 @import 'item.scss';
+@import 'order.scss';
 
 * {
   margin: 0;
@@ -36,8 +37,8 @@ body {
 }
 
 .global-search-btn:hover {
-  background-color: rgb(217, 217, 217);
-  color: #0d6efd;
+  background-color: #f2f2f2;
+  color: #0c5fdb;
 }
 .global-search-input {
   border-radius: 20px 0px 0px 20px !important;
@@ -67,6 +68,7 @@ body {
 .shopping_card_container {
   height: 310px;
   overflow-y: auto;
+  // overflow-x: hidden;
 }
 
 li {
@@ -109,4 +111,29 @@ a {
 .shopping_carts__order_cost span{
   font-weight: 900px;
   font-size: 30px;
+}
+
+.content-filler {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+.orders-filler {
+  @extend .content-filler;
+  height: 150px; 
+}
+
+turbo-frame {
+  width: 100%;
+}
+
+.flash-holder {
+  padding: 14px 21px;
+}
+
+.notice {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(10, 124, 0);
 }

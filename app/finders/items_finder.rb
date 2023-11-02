@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ItemFinder
+class ItemsFinder
   attr_reader :params
 
   def self.call(params)

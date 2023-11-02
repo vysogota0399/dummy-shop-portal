@@ -62,11 +62,11 @@ module Adapters
       when 400 .. 499
         logger.error { "Response #{message.status}" }
         logger.debug { content }
-        raise ClientError.new(content['error'])
+        raise ClientError.new(content['errors'].to_json)
       when 500 .. 599
         logger.error { "Response #{message.status}" }
         logger.debug { content }
-        raise ServerError.new(content['error'])
+        raise ServerError.new(content['errors'].to_json)
       end
     end
 

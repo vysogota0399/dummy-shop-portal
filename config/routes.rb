@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :addresses
   resource :shopping_cart
 
-  root "home#index"
+  root "orders#index"
 end

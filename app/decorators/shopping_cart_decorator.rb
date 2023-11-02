@@ -30,11 +30,18 @@ class ShoppingCartDecorator
     shopping_cart.update(items: [])
   end
 
+  def finish
+    shopping_cart.destroy
+  end
+
   def cost
     current_items.sum { |item, count| item.cost_rub * count }.round
   end
 
-  # Товары в корзигне пользователя
+  # Товары в корзине пользователя
+  # {
+  #   Structs::Item => 1, где 1 - количество единиц продукта 
+  # }
   def current_items
     prepared_item_ids = shopping_cart.items
     return [] unless prepared_item_ids.any?
@@ -43,10 +50,16 @@ class ShoppingCartDecorator
       id: prepared_item_ids,
       orchestrator_adapter: orchestrator_adapter,
     }
-    found_items = ItemFinder.call(search_params).items
+    found_items = ItemsFinder.call(search_params).items
     found_items.each do |found_item|
       result[found_item] = prepared_item_ids.count { |prepared_id| prepared_id == found_item.id }
     end
     result
+  end
+
+  # Товары в корзине пользователя
+  # [1,2,3]
+  def current_item_ids
+    shopping_cart.items
   end
 end
