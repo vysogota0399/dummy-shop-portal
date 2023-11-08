@@ -1,12 +1,12 @@
 <ul class="list-group list-group-flush">
   <% @item_categories.each do |category| %>
-  <li class="list-group-item">
-    <%= link_to category_path(category) do %>
-      <%= image_pack_tag "categories/#{rand(14)}.svg", class: "item_categories__image" %>
-      <span class="subtitle-color fw-bolder">
-        <%= category.capitalize %>
-      </span>
-    <% end %>
-  </li>
+    <li class="list-group-item">
+      <%= link_to category_path(category) do %>
+        <%= image_pack_tag "categories/#{rand(14)}.svg", class: "item_categories__image" %>
+        <span class="subtitle-color fw-bolder">
+          <%= category.capitalize %>
+        </span>
+      <% end %>
+    </li>
   <% end %>
 </ul>

@@ -1,3 +1,5 @@
+$blue-color: #0c5fdb;
+
 @import 'item.scss';
 @import 'order.scss';
 
@@ -33,12 +35,12 @@ body {
   border-radius: 0px 20px 20px 0px !important;
   min-height: 40px !important;
   background-color: #f2f2f2;
-  color: #0d6efd;
+  color: $blue-color;
 }
 
 .global-search-btn:hover {
   background-color: #f2f2f2;
-  color: #0c5fdb;
+  color: $blue-color;
 }
 .global-search-input {
   border-radius: 20px 0px 0px 20px !important;

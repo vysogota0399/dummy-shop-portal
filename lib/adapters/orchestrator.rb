@@ -19,8 +19,10 @@ module Adapters
     def validate_order(order)
       client.send_request('POST', '/api/v1/orders/validate', body: { order: order })
     rescue Client::ClientError => e
+      Sentry.capture_exception(e)
       { errors: JSON.parse(e.message) }
     rescue Client::ServerError => e
+      Sentry.capture_exception(e)
       { errors: e.message }
     end
 
@@ -29,8 +31,10 @@ module Adapters
         { data: Structs::Order.new(response['data']) }
       end
     rescue Client::ClientError => e
+      Sentry.capture_exception(e)
       { errors: JSON.parse(e.message) }
     rescue Client::ServerError => e
+      Sentry.capture_exception(e)
       { errors: e.message }
     end
 
@@ -65,7 +69,7 @@ module Adapters
     end
 
     def _logger
-      ActiveSupport::TaggedLogging.new(Logger.new(STDOUT)).tagged(Thread.current[:request_id], "OrchestratorAdapter")
+      SemanticLogger['OrchestratorHttpClient']
     end
   end
 end

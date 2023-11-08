@@ -37,3 +37,33 @@
   height: 74px;
   background-color: #f2f2f2;
 }
+
+.order_state {
+  width: 40px;
+  height: 40px;
+  background-color: #f2f2f2;
+  text-align: center;
+  border-radius: 50px;
+  margin: 0 1px;
+  font-size: 25px;
+}
+
+.waiting_state {
+  @extend .order_state;
+}
+
+.assembling_state {
+  @extend .order_state;
+}
+
+.delivering_state {
+  @extend .order_state;
+}
+
+.finished_state {
+  @extend .order_state;
+}
+
+.state_completed {
+  background-color: $blue-color;
+}

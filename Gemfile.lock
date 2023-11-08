@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/Amnesthesia/rails_semantic_logger.git
+  revision: cba6f1b7f2c311ec2c7f47b1bbe4448dbd2abf86
+  branch: fix/rails7.1
+  specs:
+    rails_semantic_logger (4.12.0)
+      rack
+      railties (>= 5.1)
+      semantic_logger (~> 4.13)
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: d221c964bf5c096567322cb52484fb46276e9612
   branch: main
@@ -6,8 +16,10 @@ GIT
     faker (3.0.0)
       i18n (>= 1.8.11, < 2)
 
-GEM
-  remote: https://rubygems.org/
+GIT
+  remote: https://github.com/rails/rails.git
+  revision: 55f4a62638b6c8319bfd276d9d2d7b1adb0a6d71
+  branch: 7-1-stable
   specs:
     actioncable (7.1.1)
       actionpack (= 7.1.1)
@@ -39,6 +51,7 @@ GEM
       actionview (= 7.1.1)
       activesupport (= 7.1.1)
       nokogiri (>= 1.8.5)
+      racc
       rack (>= 2.2.4)
       rack-session (>= 1.0.1)
       rack-test (>= 0.6.3)
@@ -82,6 +95,32 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    rails (7.1.1)
+      actioncable (= 7.1.1)
+      actionmailbox (= 7.1.1)
+      actionmailer (= 7.1.1)
+      actionpack (= 7.1.1)
+      actiontext (= 7.1.1)
+      actionview (= 7.1.1)
+      activejob (= 7.1.1)
+      activemodel (= 7.1.1)
+      activerecord (= 7.1.1)
+      activestorage (= 7.1.1)
+      activesupport (= 7.1.1)
+      bundler (>= 1.15.0)
+      railties (= 7.1.1)
+    railties (7.1.1)
+      actionpack (= 7.1.1)
+      activesupport (= 7.1.1)
+      irb
+      rackup (>= 1.0.0)
+      rake (>= 12.2)
+      thor (~> 1.0, >= 1.2.2)
+      zeitwerk (~> 2.6)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     base64 (0.1.1)
@@ -147,6 +186,9 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     httpclient (2.8.3)
+    httplog (1.6.2)
+      rack (>= 2.0)
+      rainbow (>= 2.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -161,6 +203,9 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    logstash-event (1.2.02)
+    logstash-logger (0.26.1)
+      logstash-event (~> 1.2)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -175,7 +220,7 @@ GEM
     minitest (5.16.3)
     msgpack (1.6.0)
     mutex_m (0.1.2)
-    net-imap (0.4.2)
+    net-imap (0.4.4)
       date
       net-protocol
     net-pop (0.1.2)
@@ -211,20 +256,6 @@ GEM
     rackup (2.1.0)
       rack (>= 3)
       webrick (~> 1.8)
-    rails (7.1.1)
-      actioncable (= 7.1.1)
-      actionmailbox (= 7.1.1)
-      actionmailer (= 7.1.1)
-      actionpack (= 7.1.1)
-      actiontext (= 7.1.1)
-      actionview (= 7.1.1)
-      activejob (= 7.1.1)
-      activemodel (= 7.1.1)
-      activerecord (= 7.1.1)
-      activestorage (= 7.1.1)
-      activesupport (= 7.1.1)
-      bundler (>= 1.15.0)
-      railties (= 7.1.1)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -232,14 +263,7 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    railties (7.1.1)
-      actionpack (= 7.1.1)
-      activesupport (= 7.1.1)
-      irb
-      rackup (>= 1.0.0)
-      rake (>= 12.2)
-      thor (~> 1.0, >= 1.2.2)
-      zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.0.6)
     rdoc (6.5.0)
       psych (>= 4.0.0)
@@ -258,7 +282,14 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    semantic_logger (4.14.0)
+      concurrent-ruby (~> 1.0)
     semantic_range (3.0.0)
+    sentry-rails (5.12.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.12.0)
+    sentry-ruby (5.12.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -266,9 +297,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.5.3-aarch64-linux)
-    sqlite3 (1.5.3-arm64-darwin)
-    sqlite3 (1.5.3-x86_64-linux)
+    stackprof (0.2.25)
     stimulus-rails (1.3.0)
       railties (>= 6.0.0)
     stringio (3.0.8)
@@ -322,17 +351,22 @@ DEPENDENCIES
   faker!
   faraday (~> 2.7, >= 2.7.4)
   httpclient (~> 2.7, >= 2.7.1)
+  httplog (~> 1.6, >= 1.6.2)
   importmap-rails
   interactor (~> 3.1, >= 3.1.2)
   jbuilder
+  logstash-logger (~> 0.26.1)
   pagy (~> 5.10)
   pg
   puma (~> 5.0)
-  rails (~> 7.1.0)
+  rails!
+  rails_semantic_logger!
   redis (~> 4.0)
   selenium-webdriver
+  sentry-rails (~> 5.12)
+  sentry-ruby (~> 5.12)
   sprockets-rails
-  sqlite3 (~> 1.4)
+  stackprof (~> 0.2.25)
   stimulus-rails
   turbo-rails
   tzinfo-data

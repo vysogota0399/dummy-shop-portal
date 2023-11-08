@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:14.2
+    container_name: shop-postgres
+    environment:
+      POSTGRES_USER: orchestrator
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  
+  message_broker:
+    image: rabbitmq:3.12.2-management
+    platform: linux/arm64
+    container_name: shop-message_broker
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    # ports: 
+    #   - 5672:5672
+    #   - 15672:15672
+    volumes:
+      - 'message_broker:/data'
+
+  redis:
+    platform: linux/arm64
+    image: redis:7.2.2-alpine
+    container_name: shop-redis
+    volumes:
+      - 'redis:/data'
+
+volumes:
+  postgres:
+  message_broker:
+  redis:
+
+networks:
+  default:
+      name: shop-local-network

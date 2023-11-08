@@ -4,13 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.0"
+gem "rails", git: "https://github.com/rails/rails.git", branch: "7-1-stable"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -51,6 +48,13 @@ gem 'dry-struct', '~> 1.6'
 gem 'dry-configurable', '~> 1.1'
 gem 'httpclient', '~> 2.7', '>= 2.7.1'
 gem 'interactor', '~> 3.1', '>= 3.1.2'
+gem 'sentry-ruby', '~> 5.12'
+gem 'sentry-rails', '~> 5.12'
+gem 'stackprof', '~> 0.2.25'
+
+gem "rails_semantic_logger", git: "https://github.com/Amnesthesia/rails_semantic_logger.git", branch: "fix/rails7.1"
+
+gem 'logstash-logger', '~> 0.26.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

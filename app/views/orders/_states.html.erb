@@ -1,0 +1,14 @@
+<div class="states_container d-flex">
+  <div class="waiting_state <%= state_copleted_confition_for(order_state, 'waiting_state')%>">
+    🧘‍♀️
+  </div>
+  <div class="assembling_state <%= state_copleted_confition_for(order_state, 'assembling_state')%>">
+    🛒
+  </div>
+  <div class="delivering_state <%= state_copleted_confition_for(order_state, 'delivering_state')%>">
+    🚴
+  </div>
+  <div class="finished_state <%= state_copleted_confition_for(order_state, 'finished_state')%>">
+    🏁
+  </div>
+</div>

@@ -11,7 +11,7 @@ module Structs
     attribute :description, Types::String
   
     def cost_rub
-      cost_cops.to_f / 100.round(2)
+      (cost_cops.to_f / 100).ceil
     end
   end
 end

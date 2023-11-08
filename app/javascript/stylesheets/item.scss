@@ -38,12 +38,12 @@
 .item__add_btn {
   border: none;
   background-color: #f2f2f2;
-  color: #0d6efd;
+  color: $blue-color;
 }
 
 .item__add_btn:hover {
   background-color: rgb(229, 229, 229);
-  color: #0d6efd;
+  color: $blue-color;
 }
 
 .item__add_btn_left {

@@ -2,6 +2,8 @@ require_relative "boot"
 
 require "rails/all"
 
+require_relative '../lib/middlewares/set_request_id_middleware'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -19,14 +21,15 @@ module Vds
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    if ENV["RAILS_LOG_TO_STDOUT"].present?
-      logger           = ActiveSupport::Logger.new(STDOUT)
-      logger.formatter = config.log_formatter
-      config.logger    = ActiveSupport::TaggedLogging.new(logger)
-    end
-
-    config.autoload_lib(ignore: %w(assets tasks))
+    # Elk stask integration for logging
+    config.logstash = config_for(:logstash)
+    config.autoload_lib(ignore: %w(assets tasks middlewared))
     config.i18n.default_locale = :ru
-    config.logger = Logger.new(STDOUT)
+    config.log_tags = {
+      request_id: :request_id,
+    }
+
+
+    config.middleware.use SetRequestIdMiddleware
   end
 end

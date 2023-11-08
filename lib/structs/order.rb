@@ -2,6 +2,17 @@
 
 module Structs
   class Order < SymbolizeStruct
+    STATES = {
+      canceled: -1,
+      damaged: 0,
+      waiting_for_payment: 1,
+      waiting_for_the_assembly: 2,
+      assembling: 3,
+      waiting_for_the_courier: 4,
+      delivering: 5,
+      delivered: 6,
+    }.with_indifferent_access
+
     attribute :id, Types::Integer
     attribute :state, Types::String
     attribute :created_at, Types::JSON::DateTime

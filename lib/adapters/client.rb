@@ -16,23 +16,23 @@ module Adapters
     setting :token, reader: false
     setting :ssl, reader: false, default: false
     setting :base_url, reader: false, constructor: proc { |host| "http://#{host}" }
-    setting :logger, reader: false, default: ActiveSupport::TaggedLogging.new(Logger.new(STDOUT)).tagged(Thread.current[:request_id], "HTTP_Client")
+    setting :logger, reader: false, default: SemanticLogger['HttpClient']
 
     def send_request(method, uri, args = {})
-      logger.info { "Request #{method} #{uri}" }
       response = nil
-      case method
-      when 'POST'
-        payload = args[:body].to_json
-        logger.debug { "Payload #{payload}" }
-        response = process_message(client.request(method, uri, body: payload))
-      when 'GET'
-        logger.debug { "Query #{args[:query]}" }
-        response = process_message(client.request(method, uri, query: args[:query]))
-      when 'DELETE'
-        payload = args[:body].to_json
-        logger.debug { "Payload #{payload}" }
-        response = process_message(client.request(method, uri, body: payload))
+      logged(method, uri, args) do
+        case method
+        when 'POST'
+          payload = args[:body].to_json
+          response, message = process_message(client.request(method, uri, body: payload))
+        when 'GET'
+          response, message = process_message(client.request(method, uri, query: args[:query]))
+        when 'DELETE'
+          payload = args[:body].to_json
+          response, message = process_message(client.request(method, uri, body: payload))
+        end
+        # message contains info for logger
+        message
       end
 
       return response unless block_given?
@@ -44,7 +44,13 @@ module Adapters
 
     def client
       @client ||= begin
-        client = JSONClient.new(base_url: config.base_url)
+        client =
+          JSONClient.new(
+            base_url: config.base_url,
+            default_header: {
+              'HTTP_X-Request-Id' => Thread.current[:request_id]
+            }
+          )
         client.connect_timeout = config.connect_timeout
         client.receive_timeout = config.receive_timeout
         client.send_timeout = config.send_timeout
@@ -56,22 +62,41 @@ module Adapters
       content = message.content
       case message.status
       when 200 .. 299
-        logger.info { "Response #{message.status}" }
-        logger.debug { content }
-        content.slice('data', 'meta')
+        [content.slice('data', 'meta'), message]
       when 400 .. 499
-        logger.error { "Response #{message.status}" }
-        logger.debug { content }
-        raise ClientError.new(content['errors'].to_json)
+        raise ClientError.new(content.slice('errors').merge(status: message.status).to_json)
       when 500 .. 599
-        logger.error { "Response #{message.status}" }
-        logger.debug { content }
-        raise ServerError.new(content['errors'].to_json)
+        raise ServerError.new(content.slice('errors').merge(status: message.status).to_json)
       end
     end
 
     def logger
       config.logger
+    end
+
+    def logged(method, uri, args)
+      log_payload = {
+        request: {
+          method: method,
+          uri: uri,
+        }
+      }
+      log_payload[:request][:body] = args[:body] if args.key?(:body)
+      log_payload[:request][:query] = args[:query] if args.key?(:query)
+      message = yield
+      log_payload[:response] = {
+        status: message.status,
+        data: message.content,
+      }
+      logger.debug(payload: log_payload)
+    rescue ClientError, ServerError => e
+      response = JSON.parse(e.message)
+      error = {
+        status: response['status'],
+        errors: response['errors']
+      }
+      logger.error(log_payload.merge(error))
+      raise e
     end
   end
 end
