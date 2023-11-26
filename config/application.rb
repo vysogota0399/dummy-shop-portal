@@ -22,12 +22,13 @@ module Vds
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Elk stask integration for logging
-    config.logstash = config_for(:logstash)
-    config.autoload_lib(ignore: %w(assets tasks middlewared))
+    config.autoload_lib(ignore: %w(assets tasks))
     config.i18n.default_locale = :ru
     config.log_tags = {
       request_id: :request_id,
     }
+
+    config.bunny = config_for(:bunny)
 
 
     config.middleware.use SetRequestIdMiddleware

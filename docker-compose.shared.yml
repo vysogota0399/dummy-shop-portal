@@ -19,9 +19,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 12
-    # ports: 
-    #   - 5672:5672
-    #   - 15672:15672
+    ports: 
+      - 5672:5672
+      - 15672:15672
     volumes:
       - 'message_broker:/data'
 

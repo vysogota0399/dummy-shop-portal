@@ -4,7 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", git: "https://github.com/rails/rails.git", branch: "7-1-stable"
+# gem "rails", git: "https://github.com/rails/rails.git", branch: "7-1-stable"
+gem 'rails', '~> 7.1', '>= 7.1.2'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -54,8 +55,8 @@ gem 'stackprof', '~> 0.2.25'
 
 gem "rails_semantic_logger", git: "https://github.com/Amnesthesia/rails_semantic_logger.git", branch: "fix/rails7.1"
 
-gem 'logstash-logger', '~> 0.26.1'
-
+gem 'elasticsearch', '~> 8.11'
+gem 'bunny', '~> 2.22'
 # Use Sass to process CSS
 # gem "sassc-rails"
 
