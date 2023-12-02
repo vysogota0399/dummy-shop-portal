@@ -2,3 +2,4 @@ ru:
   order:
     create_success: 'Заказ успешно создан'
     create_failure: 'Произошла ошибка'
+    order_state_updated: 'Статус вашего заказа изменен, ваши покупки стали еще ближе!'

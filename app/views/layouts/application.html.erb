@@ -8,6 +8,7 @@
 
     <%= javascript_pack_tag "application" %>
     <%= stylesheet_pack_tag "application" %>
+    <%= action_cable_meta_tag %>
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Tangerine">
   </head>
@@ -22,12 +23,8 @@
             </div>
           </div>
           <div class="col">
-            <% if flash.any? %>
-              <div class="content flash-holder mb-3 shadow bg-white default_border_radius">
-                <span class="notice"><%= t("#{flash[:notice]}") if flash.key?(:notice) %></span>
-                <span class="error"><%= t("#{flash[:error]}") if flash.key?(:error)%></span>
-              </div>
-            <% end %>
+            <%= turbo_stream_from "notifications", current_user&.id %>
+            <%= render 'layouts/notifications', notifications: flash %>
             <div class="content p-4 shadow bg-white default_border_radius">
               <%= render 'items/search' %>
               <%= yield %>

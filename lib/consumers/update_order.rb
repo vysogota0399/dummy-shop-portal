@@ -32,6 +32,8 @@ module Consumers
             payload: payload,
           }
         )
+
+        Consumers::Hendlers::UpdateOrder.call(payload)
       end
 
       loop { sleep 5 }

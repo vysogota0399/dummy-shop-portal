@@ -4,8 +4,6 @@
       <%= render 'orders/show', order: order %>
     <% end %>
   <% else %>
-    <div class="text-center mt-3">
-      <%= image_pack_tag 'zero-orders-2.svg', width: 300, height: 300 %>
-    </div>
+    <%= render 'orders/zero_active_orders_filler' %>
   <% end %>
 </turbo-frame>

@@ -1,4 +1,5 @@
 <div class="mt-4 d-flex align-items-start flex-column">
+  <%= turbo_stream_from "orders_index", current_user&.id %>
   <%= render 'orders/active_orders' %>
   <%= render 'orders/finished_orders' %>
 </div>

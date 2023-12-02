@@ -1,0 +1,13 @@
+<div id="notifications_container">
+  <% if notifications.any? %>
+    <div class="content flash-holder mb-3 shadow bg-white default_border_radius">
+      <% if notifications.key?(:notice) %>
+        <%= render 'layouts/notifications/notice', message: notifications[:notice] %>
+      <% end %>
+
+      <% if notifications.key?(:error) %>
+        <%= render 'layouts/notifications/error', message: notifications[:error] %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
-<div class="order d-flex align-items-start">
+<div class="order d-flex align-items-start" id=<%= dom_id(order)%>>
   <div class="order__items default_border_radius d-flex flex-wrap justify-content-between">
     <% 4.times do |i| %>
       <% if order.items[i].present? %>

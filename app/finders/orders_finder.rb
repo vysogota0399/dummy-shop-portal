@@ -23,6 +23,8 @@ class OrdersFinder
   private
 
   def prepare_filters(scope)
+    return scope unless params.key?(:filter)
+
     scope[:filter] = { 
       state: state_mapper(params[:filter][:state]),
       customer_id: params[:customer_id]

@@ -21,8 +21,20 @@ module Structs
     attribute :cost_cops, Types::Integer.optional
     attribute :items, Types::Array.optional
 
+    attribute :client do
+      attribute :customer_id, Types::Integer
+      attribute :customer_email, Types::String
+      attribute :front_door, Types::String
+      attribute :floor, Types::String
+      attribute :intercom, Types::String
+    end
+
     def cost_rub
       items.sum(&:cost_rub)
+    end
+
+    def delivered?
+      state == 'delivered'
     end
   end
 end

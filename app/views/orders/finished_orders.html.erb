@@ -4,7 +4,7 @@
       <%= render 'orders/show', order: order %>
     <% end %>
   <% else %>
-    <div class="text-center mt-3">
+    <div class="text-center mt-3" id='zero_delivered_orders_filler'>
       <%= image_pack_tag 'zero-orders.svg', width: 300, height: 300 %>
     </div>
   <% end %>
